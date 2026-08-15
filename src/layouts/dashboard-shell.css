@@ -1,0 +1,559 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   SHELL
+===================================================== */
+
+.dashboard-shell {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  background: #080807;
+  color: #f4f1e9;
+
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.dashboard-sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 280px;
+  height: 100vh;
+
+  background: #090b09;
+
+  border-right: 1px solid #24251f;
+
+  z-index: 1000;
+}
+
+/* =====================================================
+   SIDEBAR INTERNAL
+===================================================== */
+
+.sidebar-inner {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 34px 20px 24px;
+
+  overflow-y: auto;
+}
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.sidebar-brand {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 0 12px;
+
+  margin-bottom: 48px;
+}
+
+.sidebar-brand-symbol {
+  color: #d4ad58;
+
+  font-size: 22px;
+  line-height: 1;
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand-text strong {
+  color: #e8e5dd;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+  line-height: 1;
+}
+
+.sidebar-brand-text span {
+  margin-top: 5px;
+
+  color: #aaa79f;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+}
+
+/* =====================================================
+   SIDEBAR SECTION
+===================================================== */
+
+.sidebar-section {
+  width: 100%;
+}
+
+.sidebar-section-title {
+  margin: 0 0 12px;
+
+  padding: 0 12px;
+
+  color: #686761;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+}
+
+/* =====================================================
+   NAV
+===================================================== */
+
+.sidebar-nav {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.sidebar-link {
+  width: 100%;
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 0 14px;
+
+  border-left: 2px solid transparent;
+
+  color: #85837d;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.sidebar-link:hover {
+  color: #e4dfd4;
+
+  background: #11120f;
+}
+
+.sidebar-link.active {
+  color: #d4ad58;
+
+  background: #17150e;
+
+  border-left-color: #d4ad58;
+}
+
+.sidebar-icon {
+  width: 18px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+
+  color: inherit;
+
+  font-size: 14px;
+}
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+.sidebar-account {
+  margin-top: auto;
+
+  padding-top: 24px;
+
+  border-top: 1px solid #24251f;
+}
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.dashboard-content {
+  width: calc(100% - 280px);
+
+  min-height: 100vh;
+
+  margin-left: 280px;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  background: #080807;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.dashboard-header {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 76px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  padding: 0 38px;
+
+  background: rgba(8, 8, 7, 0.96);
+
+  border-bottom: 1px solid #24251f;
+
+  z-index: 100;
+}
+
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+.dashboard-breadcrumb {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #77756f;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+.dashboard-breadcrumb strong {
+  color: #ddd9d0;
+
+  font-weight: 600;
+}
+
+.breadcrumb-slash {
+  color: #45443e;
+}
+
+/* =====================================================
+   HEADER ACTIONS
+===================================================== */
+
+.dashboard-header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+/* SEARCH */
+
+.dashboard-search {
+  width: 330px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 0 12px;
+
+  background: #0d0d0c;
+
+  border: 1px solid #292925;
+}
+
+.dashboard-search > span {
+  color: #77756f;
+
+  font-size: 17px;
+}
+
+.dashboard-search input {
+  width: 100%;
+  min-width: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #e8e4da;
+
+  font-size: 12px;
+}
+
+.dashboard-search input::placeholder {
+  color: #686660;
+}
+
+.dashboard-search small {
+  flex-shrink: 0;
+
+  color: #5e5d58;
+
+  font-size: 10px;
+}
+
+/* HEADER BUTTONS */
+
+.header-icon-button,
+.header-profile-button {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #292925;
+
+  background: #0d0d0c;
+
+  color: #aaa79f;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.header-icon-button:hover,
+.header-profile-button:hover {
+  color: #d4ad58;
+
+  border-color: #484333;
+
+  background: #15140e;
+}
+
+.header-profile-button {
+  color: #ddd9d0;
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.dashboard-main {
+  width: 100%;
+
+  min-width: 0;
+
+  flex: 1;
+
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.mobile-menu-button {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #292925;
+
+  background: #0d0d0c;
+
+  color: #e8e4da;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
+
+/* =====================================================
+   MOBILE OVERLAY
+===================================================== */
+
+.mobile-overlay {
+  display: none;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+  .dashboard-sidebar {
+    width: 250px;
+  }
+
+  .dashboard-content {
+    width: calc(100% - 250px);
+
+    margin-left: 250px;
+  }
+
+  .dashboard-header {
+    padding: 0 28px;
+  }
+
+  .dashboard-search {
+    width: 270px;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+  .dashboard-sidebar {
+    width: 280px;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.25s ease;
+
+    box-shadow: 15px 0 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .dashboard-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .dashboard-content {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .mobile-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: block;
+
+    background: rgba(0, 0, 0, 0.68);
+
+    z-index: 999;
+  }
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .dashboard-header {
+    height: 68px;
+
+    padding: 0 20px;
+
+    gap: 12px;
+  }
+
+  .dashboard-breadcrumb {
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+  }
+
+  .dashboard-header-actions {
+    flex-shrink: 0;
+  }
+
+  .dashboard-search {
+    width: 230px;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+  .dashboard-header {
+    height: 64px;
+
+    padding: 0 14px;
+
+    gap: 8px;
+  }
+
+  .dashboard-search {
+    display: none;
+  }
+
+  .dashboard-breadcrumb {
+    font-size: 12px;
+  }
+
+  .dashboard-breadcrumb span:first-child,
+  .dashboard-breadcrumb .breadcrumb-slash {
+    display: none;
+  }
+
+  .mobile-menu-button,
+  .header-icon-button,
+  .header-profile-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sidebar-inner {
+    padding: 30px 18px 20px;
+  }
+}
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+  .header-icon-button {
+    display: none;
+  }
+}

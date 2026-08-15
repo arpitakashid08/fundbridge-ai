@@ -1,0 +1,334 @@
+.landing {
+  min-height: 100vh;
+  background: #080908;
+  color: #f1eee7;
+  overflow: hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.landing-nav {
+  height: 90px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(201, 163, 87, 0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  letter-spacing: 4px;
+  font-weight: 500;
+}
+
+.brand-symbol {
+  color: #c9a357;
+  font-size: 30px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 42px;
+}
+
+.nav-links a {
+  color: #777873;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #d0aa61;
+}
+
+.nav-button {
+  border: none;
+  background: #c9a357;
+  color: #0a0a09;
+  padding: 14px 28px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: calc(100vh - 90px);
+  padding: 80px 7%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+  position: relative;
+}
+
+/* subtle background circle */
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(201, 163, 87, 0.07);
+  border-radius: 50%;
+  left: 38%;
+  top: -150px;
+  pointer-events: none;
+}
+
+/* =========================
+   HERO TEXT
+========================= */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  color: #c9a357;
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-size: clamp(60px, 6vw, 94px);
+  line-height: 0.95;
+  font-weight: 300;
+  letter-spacing: -4px;
+  margin: 0;
+}
+
+.hero h1 span {
+  color: #c9a357;
+}
+
+.hero-description {
+  max-width: 580px;
+  margin-top: 36px;
+  color: #777873;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.primary-button {
+  border: none;
+  background: #c9a357;
+  color: #080908;
+  padding: 17px 27px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.primary-button span {
+  font-size: 18px;
+}
+
+.secondary-button {
+  background: transparent;
+  border: none;
+  color: #777873;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* =========================
+   ROBOT
+========================= */
+
+.robot-container {
+  position: relative;
+  height: 570px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* soft glow behind robot */
+
+.robot-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(201, 163, 87, 0.08);
+  filter: blur(100px);
+  border-radius: 50%;
+}
+
+/* robot image */
+
+.robot-head {
+  position: relative;
+  z-index: 3;
+  width: 420px;
+  max-width: 90%;
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 0 20px rgba(201, 163, 87, 0.12));
+
+  animation: robotFloat 5s ease-in-out infinite;
+}
+
+@keyframes robotFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* =========================
+   ROBOT ORBITS
+========================= */
+
+.robot-orbit {
+  position: absolute;
+  border: 1px solid rgba(201, 163, 87, 0.16);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.orbit-one {
+  width: 430px;
+  height: 430px;
+  animation: rotateOrbit 20s linear infinite;
+}
+
+.orbit-two {
+  width: 510px;
+  height: 510px;
+  transform: rotate(65deg);
+  border-color: rgba(201, 163, 87, 0.08);
+  animation: rotateOrbitReverse 30s linear infinite;
+}
+
+.orbit-three {
+  width: 350px;
+  height: 350px;
+  transform: rotate(120deg);
+  border-color: rgba(201, 163, 87, 0.08);
+  animation: rotateOrbit 15s linear infinite;
+}
+
+@keyframes rotateOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateOrbitReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* =========================
+   ROBOT STATUS
+========================= */
+
+.robot-label {
+  position: absolute;
+  bottom: 40px;
+  right: 30px;
+
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #777873;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c9a357;
+}
+
+/* =========================
+   TRUST
+========================= */
+
+.trust-section {
+  padding: 35px 7%;
+  border-top: 1px solid rgba(201, 163, 87, 0.08);
+
+  display: flex;
+  align-items: center;
+  gap: 55px;
+
+  color: #555750;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.trust-section span {
+  color: #777873;
+}
+
+.trust-section div {
+  color: #8b8c86;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 50px;
+  }
+
+  .robot-container {
+    height: 450px;
+  }
+
+  .hero h1 {
+    font-size: 60px;
+  }
+
+  .trust-section {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+}
