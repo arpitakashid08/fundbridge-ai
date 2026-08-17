@@ -84,4 +84,6 @@ app.use(
   }
 );
 
-export default app;
+app.listen(PORT, () => {
+  console.log(`FundBridge API listening on port ${PORT}`);
+});
