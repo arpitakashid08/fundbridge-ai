@@ -2,16 +2,11 @@ import { Router } from "express";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
 import prisma from "../config/prisma.js";
 import { authenticate } from "../middleware/auth.middleware.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { uploadDirectory, uploadPublicPath } from "../config/environment.js";
 
 const router = Router();
-
-const uploadDirectory = path.join(__dirname, "../../uploads");
 
 if (!fs.existsSync(uploadDirectory)) {
   fs.mkdirSync(uploadDirectory, { recursive: true });
@@ -149,7 +144,7 @@ router.post("/upload", authenticate, upload.single("document"), async (req, res)
       return res.status(400).json({ message: "No document uploaded." });
     }
 
-    const fileUrl = `/uploads/${req.file.filename}`;
+    const fileUrl = `${uploadPublicPath}/${req.file.filename}`;
     const ext = path.extname(req.file.originalname).replace(".", "").toUpperCase() || "DOC";
 
     const doc = await prisma.document.create({
@@ -185,9 +180,16 @@ router.delete("/:id", authenticate, async (req, res) => {
     const userId = req.userId!;
     const targetId = String(req.params.id);
 
-    await prisma.document.deleteMany({
-      where: { id: targetId, userId },
-    });
+    const document = await prisma.document.findFirst({ where: { id: targetId, userId } });
+    if (!document) return res.status(404).json({ message: "Document not found." });
+
+    await prisma.document.delete({ where: { id: document.id } });
+    if (document.fileUrl?.startsWith(`${uploadPublicPath}/`)) {
+      const filename = path.basename(document.fileUrl);
+      await fs.promises.unlink(path.join(uploadDirectory, filename)).catch((error: NodeJS.ErrnoException) => {
+        if (error.code !== "ENOENT") throw error;
+      });
+    }
 
     return res.status(200).json({ message: "Document removed." });
   } catch (error) {

@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5050";
+import { apiUrl } from "../config/api";
 
 type Opportunity = {
   id: string;
@@ -42,7 +41,7 @@ export default function FundingDiscovery() {
 
       try {
         const response = await fetch(
-          `${API_URL}/api/funding`,
+          apiUrl("/api/funding"),
           {
             method: "GET",
 

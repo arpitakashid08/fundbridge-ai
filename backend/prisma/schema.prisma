@@ -8,22 +8,21 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  company   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  profile       BusinessProfile?
-  applications  Application[]
-  documents     Document[]
+  id           String           @id @default(cuid())
+  name         String
+  email        String           @unique
+  password     String
+  company      String?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  applications Application[]
+  profile      BusinessProfile?
+  documents    Document[]
 }
 
 model BusinessProfile {
-  id                 String   @id @default(cuid())
-  userId             String   @unique
+  id                 String  @id @default(cuid())
+  userId             String  @unique
   industry           String?
   location           String?
   businessStage      String?
@@ -31,36 +30,33 @@ model BusinessProfile {
   fundingRequirement Float?
   employees          Int?
   description        String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model FundingOpportunity {
-  id          String   @id @default(cuid())
-  title       String
-  type        String
-  provider    String
-  description String
-  location    String?
-  minAmount   Float?
-  maxAmount   Float?
-  deadline    DateTime?
-  website     String?
-  createdAt   DateTime @default(now())
-
+  id           String        @id @default(cuid())
+  title        String
+  type         String
+  provider     String
+  description  String
+  location     String?
+  minAmount    Float?
+  maxAmount    Float?
+  deadline     DateTime?
+  website      String?
+  createdAt    DateTime      @default(now())
   applications Application[]
 }
 
 model Application {
-  id            String   @id @default(cuid())
+  id            String             @id @default(cuid())
   userId        String
   opportunityId String
-  status        String   @default("draft")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  user        User                @relation(fields: [userId], references: [id], onDelete: Cascade)
-  opportunity FundingOpportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  status        String             @default("draft")
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  opportunity   FundingOpportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  user          User               @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Document {
@@ -71,6 +67,5 @@ model Document {
   status     String   @default("pending")
   fileUrl    String?
   uploadedAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

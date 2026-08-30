@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:5050";
+import { apiUrl } from "../config/api";
 
 export type Opportunity = {
   id: string;
@@ -40,7 +40,7 @@ export type DocumentItem = {
 async function authenticatedFetch(path: string, init?: RequestInit) {
   const token = localStorage.getItem("fundbridge_token");
   if (!token) throw new Error("You are not logged in.");
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(apiUrl(path), {
     ...init,
     headers: { Authorization: `Bearer ${token}`, ...init?.headers },
   });
@@ -95,7 +95,7 @@ export async function uploadDocument(file: File): Promise<DocumentItem> {
   const formData = new FormData();
   formData.append("document", file);
 
-  const response = await fetch(`${API_URL}/api/documents/upload`, {
+  const response = await fetch(apiUrl("/api/documents/upload"), {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
     body: formData,

@@ -1,5 +1,6 @@
-const OLLAMA_URL = "http://127.0.0.1:11434";
-const MODEL = "gemma3:4b";
+const OLLAMA_URL = process.env.OLLAMA_URL?.replace(/\/$/, "");
+const MODEL = process.env.OLLAMA_MODEL || "gemma3:4b";
+const timeoutMs = Number(process.env.AI_REQUEST_TIMEOUT_MS || 15000);
 
 interface AIMessage {
   role: "system" | "user" | "assistant";
@@ -9,6 +10,10 @@ interface AIMessage {
 export async function askAI(
   messages: AIMessage[]
 ): Promise<string> {
+  if (!OLLAMA_URL) {
+    throw new Error("AI is not configured. Set OLLAMA_URL to a remote Ollama-compatible endpoint.");
+  }
+
   try {
     const response = await fetch(`${OLLAMA_URL}/api/chat`, {
       method: "POST",
@@ -17,7 +22,7 @@ export async function askAI(
         "Content-Type": "application/json",
       },
 
-      signal: AbortSignal.timeout(5000),
+      signal: AbortSignal.timeout(timeoutMs),
 
       body: JSON.stringify({
         model: MODEL,
@@ -50,7 +55,7 @@ export async function askAI(
     console.error("OLLAMA CONNECTION ERROR:", error);
 
     throw new Error(
-      "Unable to connect to the local AI model."
+      "Unable to connect to the configured AI model."
     );
   }
 }

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiUrl } from "../../config/api";
 import "./auth.css";
-
-const API_URL = "http://127.0.0.1:5050";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ export default function Signup() {
     try {
       setLoading(true);
 
-      const response = await fetch(`${API_URL}/api/auth/signup`, {
+      const response = await fetch(apiUrl("/api/auth/signup"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

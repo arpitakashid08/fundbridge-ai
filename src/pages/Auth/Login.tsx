@@ -1,9 +1,8 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiUrl } from "../../config/api";
 import "./auth.css";
-
-const API_URL = "http://127.0.0.1:5050";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ export default function Login() {
 
     try {
       const response = await fetch(
-        `${API_URL}/api/auth/login`,
+        apiUrl("/api/auth/login"),
         {
           method: "POST",
           headers: {
@@ -81,7 +80,7 @@ export default function Login() {
 
       if (error instanceof TypeError) {
         setError(
-          "Cannot connect to FundBridge backend. Make sure the backend is running on port 5050."
+          "Cannot connect to FundBridge. Please try again shortly."
         );
       } else if (error instanceof Error) {
         setError(error.message);

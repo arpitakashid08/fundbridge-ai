@@ -1,8 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-
-const JWT_SECRET =
-  process.env.JWT_SECRET || "fundbridge-development-secret";
+import { jwtSecret } from "../config/environment.js";
 
 declare global {
   namespace Express {
@@ -36,7 +34,7 @@ export function authenticate(
       });
     }
 
-    const decoded = jwt.verify(token, JWT_SECRET) as {
+    const decoded = jwt.verify(token, jwtSecret) as {
       userId: string;
     };
 

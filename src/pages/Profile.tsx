@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-const API_URL = "http://127.0.0.1:5050";
+import { apiUrl } from "../config/api";
 
 interface ProfileForm {
   business: string;
@@ -44,7 +43,7 @@ export default function Profile() {
       }
 
       try {
-        const response = await fetch(`${API_URL}/api/profile`, {
+        const response = await fetch(apiUrl("/api/profile"), {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -123,7 +122,7 @@ export default function Profile() {
     setError("");
 
     try {
-      const response = await fetch(`${API_URL}/api/profile`, {
+      const response = await fetch(apiUrl("/api/profile"), {
         method: "PUT",
 
         headers: {
