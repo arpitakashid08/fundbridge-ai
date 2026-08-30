@@ -1,75 +1,118 @@
-# React + TypeScript + Vite
+# FundBridge AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FundBridge AI is an AI-powered funding discovery platform designed for startups and small businesses.
 
-Currently, two official plugins are available:
+It helps businesses discover relevant grants, government schemes, loans, and investors based on their industry, location, business stage, and funding requirements.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- AI-powered funding discovery
+- Personalized funding matching
+- Grant recommendations
+- Loan recommendations
+- Investor discovery
+- AI Strategist for funding and growth guidance
+- Profile-based recommendations
+- Funding and application tracking
+- User authentication
+- Business profile management
+- Document management
+- Funding analytics
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## AI Integration
 
-## Expanding the ESLint configuration
+### Google Gemini
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Google Gemini powers the intelligent AI capabilities of FundBridge, including the AI Strategist and funding-related reasoning.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Gemini helps interpret a business's:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Industry
+- Location
+- Business stage
+- Funding requirement
+- Growth objectives
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+and provides more relevant funding insights and strategic guidance.
 
-```
+### Ollama + Gemma 3 4B
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+FundBridge also integrates Ollama with the Gemma 3 4B model for local AI capabilities.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This provides a hybrid AI architecture combining cloud-based Gemini capabilities with locally hosted AI.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## How Funding Matching Works
 
-```
+FundBridge uses the business profile to identify opportunities that are more relevant to the startup.
+
+Matching considers factors such as:
+
+- Industry
+- Location
+- Business stage
+- Funding requirement
+- Business profile
+
+The recommendations can change as the business profile changes.
+
+## Tech Stack
+
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- Three.js
+
+### Backend
+
+- Node.js
+- Express
+- TypeScript
+- REST APIs
+
+### Database
+
+- PostgreSQL
+- Prisma ORM
+
+### AI
+
+- Google Gemini
+- Ollama
+- Gemma 3 4B
+
+### Authentication
+
+- JWT
+
+## Project Structure
+
+```text
+fundbridge-ai/
+│
+├── backend/
+│   ├── prisma/
+│   └── src/
+│       ├── config/
+│       ├── controllers/
+│       ├── middleware/
+│       ├── routes/
+│       ├── services/
+│       └── utils/
+│
+├── public/
+│   ├── models/
+│   └── robot-head.png
+│
+├── src/
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   ├── services/
+│   └── config/
+│
+├── package.json
+└── README.md
